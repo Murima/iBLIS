@@ -73,9 +73,9 @@
 							$fieldName = "m_".$measure->id;
 							?>
 								@if ( $measure->isNumeric() ) 
-			                        {{ Form::label($fieldName , $measure->name) }}
+			                        {{ Form::label($fieldName , $measure->name, array('class' => 'tests')) }}
 			                        {{ Form::text($fieldName, $ans, array(
-			                            'class' => 'form-control result-interpretation-trigger',
+			                            'class' => 'form-control result-interpretation-trigger tests',
 			                            'data-url' => URL::route('test.resultinterpretation'),
 			                            'data-age' => $test->visit->patient->dob,
 			                            'data-gender' => $test->visit->patient->gender,
@@ -94,28 +94,28 @@
 			                            $measure_values[$range->alphanumeric] = $range->alphanumeric;
 			                        }
 			                        ?>
-		                            {{ Form::label($fieldName , $measure->name) }}
+		                            {{ Form::label($fieldName , $measure->name, array('class' => 'tests')) }}
 		                            {{ Form::select($fieldName, $measure_values, array_search($ans, $measure_values),
-		                                array('class' => 'form-control result-interpretation-trigger',
+		                                array('class' => 'form-control result-interpretation-trigger tests',
 		                                'data-url' => URL::route('test.resultinterpretation'),
 		                                'data-measureid' => $measure->id
 		                                )) 
 		                            }}
 								@elseif ( $measure->isFreeText() ) 
-		                            {{ Form::label($fieldName, $measure->name) }}
+		                            {{ Form::label($fieldName, $measure->name, array('class' =>'tests')) }}
 		                            <?php
 										$sense = '';
 										if($measure->name=="Sensitivity"||$measure->name=="sensitivity")
 											$sense = ' sense'.$test->id;
 									?>
-		                            {{Form::text($fieldName, $ans, array('class' => 'form-control'.$sense))}}
+		                            {{Form::text($fieldName, $ans, array('class' => 'form-control tests'.$sense))}}
 								@endif
 		                    </div>
 		                @endforeach
 		                <div class="form-group">
-		                    {{ Form::label('interpretation', trans('messages.interpretation')) }}
+		                    {{ Form::label('interpretation', trans('messages.interpretation'), array('class' =>'tests')) }}
 		                    {{ Form::textarea('interpretation', $test->interpretation, 
-		                        array('class' => 'form-control result-interpretation', 'rows' => '2')) }}
+		                        array('class' => 'form-control result-interpretation testStatus tests', 'rows' => '2')) }}
 		                </div>
 		                <div class="form-group actions-row" align="left">
 							{{ Form::button('<span class="glyphicon glyphicon-save"></span> '.trans('messages.update-test-results'),
